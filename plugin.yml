@@ -1,0 +1,15 @@
+name: MCPEtoConsole
+author: DaDevGuy
+main: MCPEtoConsole\DaDevGuy\Main
+api: 1.0.0
+version: 1.0.0
+
+commands:
+ console:
+  description: "Send Commands To Console!"
+  permission: mcpetodiscord.cmd
+  aliases: ["c"]
+
+permissions:
+ mcpetodiscord.cmd:
+  default: op

@@ -1,0 +1,9 @@
+#CONFIG
+
+console: false
+
+no-permission: "You Dont Have Permission"
+
+#use " around commands for removing spaces between them
+
+usage: "/console say Hello"
