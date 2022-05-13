@@ -12,7 +12,7 @@
 
 # Permissions
 
-* `mcpetodiscord.cmd`
+* `mcpetoconsole.cmd`
 
 # Credits
 
