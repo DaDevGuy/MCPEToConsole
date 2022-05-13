@@ -24,7 +24,7 @@ class Main extends PluginBase implements Listener
             {
                 $sender->sendMessage("Please Use This Command In-Game!");
             }
-            if (!$sender->hasPermission("mcpetodiscord.cmd")) 
+            if (!$sender->hasPermission("mcpetoconsole.cmd")) 
             {
                 $sender->sendMessage($this->getConfig()->get("no-permission"));
             }
