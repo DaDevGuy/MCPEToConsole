@@ -7,9 +7,9 @@ version: 1.0.0
 commands:
  console:
   description: "Send Commands To Console!"
-  permission: mcpetodiscord.cmd
+  permission: mcpetoconsole.cmd
   aliases: ["c"]
 
 permissions:
- mcpetodiscord.cmd:
+ mcpetoconsole.cmd:
   default: op
