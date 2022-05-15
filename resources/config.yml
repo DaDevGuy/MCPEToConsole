@@ -1,9 +1,13 @@
+#DO NOT TOUCH
+
+config-ver: 1 #Please Don't Change It
+
 #CONFIG
 
-console: false
+password: "changeme" #Keep It A Secret
 
-no-permission: "You Dont Have Permission"
+console: false #Enable MCPEToConsole
 
 #use " around commands for removing spaces between them
 
-usage: "/console say Hello"
+usage: "/console <pass..> <args..>" #Command Usage
