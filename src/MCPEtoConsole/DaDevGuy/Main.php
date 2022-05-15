@@ -49,7 +49,7 @@ class Main extends PluginBase implements Listener
             }
             if(isset($args[1]))
             {
-                if($this->getConfig()->get("console") == true || "on")
+                if($this->getConfig()->get("console") == "true" || "on")
                 {
                     if($args[0] == $this->getConfig()->get("password"))
                     {
