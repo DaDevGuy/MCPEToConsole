@@ -6,7 +6,7 @@ config-ver: 1 #Please Don't Change It
 
 password: "changeme" #Keep It A Secret
 
-console: "false" #Enable MCPEToConsole
+console: false #Enable MCPEToConsole
 
 #use " around commands for removing spaces between them
 
