@@ -7,8 +7,8 @@
 
 # Commands
 
-* /console <args..>
-* /c <args..>
+* `/console <pass..> <args..>`
+* `/c <pass..> <args..>`
 
 # Permissions
 
