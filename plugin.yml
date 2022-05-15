@@ -1,8 +1,8 @@
-name: MCPEToConsole
+name: MCPEtoConsole
 author: DaDevGuy
 main: MCPEtoConsole\DaDevGuy\Main
-api: 4.0.0
-version: 1.0.1
+api: [4.0.0]
+version: 2.0.0
 
 commands:
  console:
