@@ -53,7 +53,7 @@ class Main extends PluginBase implements Listener
                 {
                     if($args[0] == $this->getConfig()->get("password"))
                     {
-                        $this->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), $args[1]);
+                        $this->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), implode(" ", array_slice($args, 1)));
                     }
                     else 
                     {
@@ -62,8 +62,8 @@ class Main extends PluginBase implements Listener
                 }
                 else 
                 {
-                    $this->getLogger()->info("console is not turned on in config.yml");
-                    $sender->sendMessage("console is not turned on in config.yml");
+                    $this->getLogger()->info("Console is not turned on in config.yml");
+                    $sender->sendMessage("Console is not turned on in config.yml");
                 }
               
             }
