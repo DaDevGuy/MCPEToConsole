@@ -2,73 +2,35 @@
 
 namespace MCPEtoConsole\DaDevGuy;
 
-use pocketmine\command\CommandSender;
-use pocketmine\command\Command;
-use pocketmine\console\ConsoleCommandSender;
 use pocketmine\event\Listener;
-use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\TextFormat;
 
 class Main extends PluginBase implements Listener
 {
-    public function onEnable(): void
+    private const DEFAULT_PASSWORD = "changeme";
+
+    public const PREFIX = TextFormat::DARK_GRAY . "[" . TextFormat::GREEN . "MCPEtoConsole" . TextFormat::DARK_GRAY . "] " . TextFormat::RESET;
+
+    protected function onLoad(): void
     {
         $this->saveDefaultConfig();
-        if($this->getConfig()->get("config-ver") !== 1)
-        {
-            $this->getLogger()->info("WARNING! Config.yml of MCPEToConsole Is Not Updated Please Delete config.yml in plugin_data and restart the server!");
-        }
-        if($this->getConfig()->get("password") == "changeme")
-        {
-            $this->getLogger()->info("WARNING! You haven't changed default password of MCPEToConsole please change it immediately in config.yml");
-        }
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
+    public function onEnable(): void
     {
-        if($command->getName() === "console")
+        if($this->getConfig()->get("config-ver") !== 1.1)
         {
-            if(!$sender instanceof Player)
-            {
-                $sender->sendMessage("Please Use This Command In-Game!");
-            }
-            if(!isset($args[0]))
-            {
-                $sender->sendMessage($this->getConfig()->get("usage"));
-            }
-            if(isset($args[0]))
-            {
-                if($args[0] !== $this->getConfig()->get("password"))
-                {
-                    $sender->sendMessage("Incorrect Password");
-                }
-            }
-            if(!isset($args[1]))
-            {
-                $sender->sendMessage($this->getConfig()->get("usage"));
-            }
-            if(isset($args[1]))
-            {
-                if($this->getConfig()->get("console") == true)
-                {
-                    if($args[0] == $this->getConfig()->get("password"))
-                    {
-                        $this->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), implode(" ", array_slice($args, 1)));
-                    }
-                    else 
-                    {
-                        $sender->sendMessage("Incorrect Password");
-                    }
-                }
-                else 
-                {
-                    $this->getLogger()->info("Console is not turned on in config.yml");
-                    $sender->sendMessage("Console is not turned on in config.yml");
-                }
-              
-            }
-        return true;
+            $this->getLogger()->warning("Config.yml of MCPEToConsole is not updated, and will function incorrectly. Please delete config.yml in plugin_data and restart the server!");
+            return;
+        }
+
+        if($this->getConfig()->get("password") == Main::DEFAULT_PASSWORD)
+        {
+            $this->getLogger()->warning("You haven't changed default password of MCPEToConsole, and the plugin will function incorrectly. Please change it immediately in config.yml and restart the server.");
+            return;
+        }
+
+        $this->getServer()->getCommandMap()->register("MCPEtoConsole", new ConsoleCommand($this));
     }
-    return false;
-   }
 }

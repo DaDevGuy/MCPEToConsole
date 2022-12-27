@@ -1,12 +1,14 @@
 #DO NOT TOUCH
 
-config-ver: 1 #Please Don't Change It
+config-ver: 1.1 #Please Don't Change It
 
 #CONFIG
 
 password: "changeme" #Keep It A Secret
 
 console: false #Enable MCPEToConsole
+
+console-logging: true #Enable logging to the console when command is sent
 
 #use " around commands for removing spaces between them
 
