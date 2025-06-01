@@ -4,12 +4,7 @@ main: MCPEtoConsole\DaDevGuy\Main
 api: [4.0.0]
 version: 2.0.1
 
-commands:
- console:
-  description: "Send Commands To Console!"
-  permission: mcpetoconsole.cmd
-  aliases: ["c"]
-
 permissions:
  mcpetoconsole.cmd:
+  description: Allows the use of the /console command
   default: op
