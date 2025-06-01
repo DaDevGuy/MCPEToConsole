@@ -12,6 +12,9 @@ class Main extends PluginBase implements Listener
 
     public const PREFIX = TextFormat::DARK_GRAY . "[" . TextFormat::GREEN . "MCPEtoConsole" . TextFormat::DARK_GRAY . "] " . TextFormat::RESET;
 
+    /** @var resource|null */
+    private $logFile = null;
+
     protected function onLoad(): void
     {
         $this->saveDefaultConfig();
@@ -19,7 +22,7 @@ class Main extends PluginBase implements Listener
 
     public function onEnable(): void
     {
-        if($this->getConfig()->get("config-ver") !== 1.1)
+        if($this->getConfig()->get("config-ver") !== 2.0)
         {
             $this->getLogger()->warning("Config.yml of MCPEToConsole is not updated, and will function incorrectly. Please delete config.yml in plugin_data and restart the server!");
             return;
@@ -31,6 +34,28 @@ class Main extends PluginBase implements Listener
             return;
         }
 
+        $logPath = $this->getDataFolder() . "command_logs.txt";
+        $this->logFile = fopen($logPath, "a");
+
         $this->getServer()->getCommandMap()->register("MCPEtoConsole", new ConsoleCommand($this));
+    }
+
+    public function onDisable(): void
+    {
+        if($this->logFile !== null) {
+            fclose($this->logFile);
+        }
+    }
+
+    /**
+     * @param string $message
+     */
+    public function logCommand(string $message): void
+    {
+        $this->getLogger()->info($message);
+        if($this->logFile !== null) {
+            $timestamp = date("Y-m-d H:i:s");
+            fwrite($this->logFile, "[$timestamp] $message" . PHP_EOL);
+        }
     }
 }

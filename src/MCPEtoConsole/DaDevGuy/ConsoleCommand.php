@@ -5,7 +5,6 @@ namespace MCPEtoConsole\DaDevGuy;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\console\ConsoleCommandSender;
-use pocketmine\lang\Translatable;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginOwned;
@@ -52,8 +51,8 @@ class ConsoleCommand extends Command implements PluginOwned
             return;
         }
 
-        if ($this->plugin->getConfig()->get("console-logging")) $this->plugin->getLogger()->info("Executing command sent by " . TextFormat::AQUA . $sender->getName() . TextFormat::RESET . ": " . implode(" ", array_slice($args, 1)));
-
+        $logMessage = "Executing command sent by " . TextFormat::AQUA . $sender->getName() . TextFormat::RESET . ": " . implode(" ", array_slice($args, 1));
+        $this->plugin->logCommand($logMessage);
 
         $this->plugin->getServer()->dispatchCommand(new ConsoleCommandSender($this->plugin->getServer(), $this->plugin->getServer()->getLanguage()), implode(" ", array_slice($args, 1)));
     }
